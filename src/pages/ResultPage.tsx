@@ -101,16 +101,6 @@ export function ResultPage() {
                 今年も良い年になりますように！
               </motion.p>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-            >
-              <p className="text-sm text-center text-gray-500">
-                このページをスクリーンショットして保存してください
-              </p>
-            </motion.div>
           </div>
         </Card>
       </motion.div>
