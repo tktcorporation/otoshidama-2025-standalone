@@ -20,9 +20,7 @@ export function ResultPage() {
   }
 
   return (
-    <div className="h-[100svh] w-screen flex flex-col overflow-hidden bg-red-600">
-      <div className="flex-1 flex items-center justify-center overflow-auto">
-        <div className="w-full max-w-md mx-auto">
+    <div className="h-full flex flex-col items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -31,7 +29,7 @@ export function ResultPage() {
               stiffness: 260,
               damping: 20,
             }}
-            className="p-4"
+            className="w-full max-w-md"
           >
             <Card className="relative overflow-hidden backdrop-blur-lg bg-white/90 p-8 shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-white/10 pointer-events-none" />
@@ -107,7 +105,5 @@ export function ResultPage() {
             </Card>
           </motion.div>
         </div>
-      </div>
-    </div>
   );
 }
