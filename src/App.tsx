@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { GachaPage } from '@/pages/GachaPage';
-import { ResultPage } from '@/pages/ResultPage';
-import { Toaster } from '@/components/ui/toaster';
+import { GachaPage } from './pages/GachaPage';
+import { ResultPage } from './pages/ResultPage';
+import { Toaster } from './components/ui/toaster';
 import { createContext, useState } from 'react';
 
 export interface GachaResult {

@@ -1,15 +1,15 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/card';
+import { Input } from '../components/ui/input';
+import { Label } from '../components/ui/label';
 import { Gift, Sparkles, Coins } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { OTOSHIDAMA_CONFIG, spinGacha } from '@/lib/gacha';
+import { cn } from '../lib/utils';
+import { OTOSHIDAMA_CONFIG, spinGacha } from '../lib/gacha';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LoadingScreen } from '@/components/LoadingScreen';
-import { GachaContext } from '@/App';
+import { LoadingScreen } from '../components/LoadingScreen';
+import { GachaContext } from '../App';
 
 export function GachaPage() {
   const navigate = useNavigate();

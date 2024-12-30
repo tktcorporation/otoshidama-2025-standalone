@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { Dialog, DialogContent, DialogHeader } from './ui/dialog';
 import { Gift, Sparkles, Coins, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { OTOSHIDAMA_CONFIG, spinGacha } from '@/lib/gacha';
+import { cn } from '../lib/utils';
+import { OTOSHIDAMA_CONFIG, spinGacha } from '../lib/gacha';
 
 export function OtoshidamaGacha() {
   const [isSpinning, setIsSpinning] = useState(false);

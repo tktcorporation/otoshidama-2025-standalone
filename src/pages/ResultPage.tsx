@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card } from '@/components/ui/card';
+import { Card } from '../components/ui/card';
 import { Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { GachaContext } from '@/App';
+import { GachaContext } from '../App';
 
 export function ResultPage() {
   const navigate = useNavigate();
