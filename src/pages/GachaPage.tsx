@@ -170,10 +170,18 @@ export function GachaPage() {
                           repeat: isSpinning ? Infinity : 0,
                           ease: "linear",
                         }}
-                        className="w-48 h-48 rounded-full border-8 border-red-600/30 flex items-center justify-center relative"
+                        className="relative w-48 h-48 flex items-center justify-center"
                       >
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-500/20 to-transparent" />
-                        <Gift className="w-20 h-20 text-red-600" />
+                        <div className="absolute top-3 right-4 rotate-12">
+                          <Sparkles className="w-8 h-8 text-yellow-400" />
+                        </div>
+                        <div className="absolute bottom-4 left-2 -rotate-12">
+                          <Coins className="w-10 h-10 text-yellow-500" />
+                        </div>
+                        <Gift 
+                          className="w-32 h-32 text-red-500 drop-shadow-lg relative" 
+                          strokeWidth={1.5}
+                        />
                       </motion.div>
                       <AnimatePresence>
                         {isSpinning && (
