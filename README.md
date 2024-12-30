@@ -26,3 +26,7 @@
 ## 📝 ライセンス
 
 MIT
+
+## 📞 連絡先
+
+- X (Twitter): [@tktcorporation](https://x.com/tktcorporation)

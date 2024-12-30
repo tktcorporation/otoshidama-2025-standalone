@@ -7,7 +7,7 @@ export function LoadingScreen() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-gradient-to-br from-red-500 via-red-600 to-red-700 flex items-center justify-center z-50 overflow-hidden"
+      className="fixed inset-0  flex items-center justify-center z-50 overflow-hidden"
     >
       <motion.div
         className="absolute inset-0"

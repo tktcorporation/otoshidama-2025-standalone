@@ -4,6 +4,7 @@ import { ResultPage } from "./pages/ResultPage";
 import { Toaster } from "./components/ui/toaster";
 import { useState } from "react";
 import { GachaContext, type GachaResult } from "./contexts/gacha";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [result, setResult] = useState<GachaResult | null>(null);
@@ -21,8 +22,13 @@ function App() {
 
   return (
     <GachaContext.Provider value={{ result, setResult }}>
-      <div className="w-screen">
-        <RouterProvider router={router} />
+      <div className="h-screen w-screen flex flex-col overflow-hidden bg-gradient-to-br from-red-500 via-red-600 to-red-700">
+        <div className="flex-1 flex items-center justify-center overflow-auto">
+          <div className="w-full max-w-md mx-auto">
+            <RouterProvider router={router} />
+          </div>
+        </div>
+        <Footer className="h-[2rem]" />
         <Toaster />
       </div>
     </GachaContext.Provider>
