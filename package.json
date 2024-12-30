@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "npm run eslint && npm run typecheck",
+    "lint": "npm run eslint && npm run typecheck && npm run format:check",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "eslint": "eslint .",
     "typecheck": "tsc --build --noEmit",
     "check-unused": "npx tsr --project tsconfig.app.json 'src/main.ts'",
