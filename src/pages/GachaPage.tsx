@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
@@ -74,6 +74,15 @@ export function GachaPage() {
   const [showLoading, setShowLoading] = useState(false);
   const [showProbability, setShowProbability] = useState(false);
   const { setResult } = useContext(GachaContext);
+  const timeoutRef = useRef<number>();
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const handleSpin = () => {
     if (!playerName.trim()) {
@@ -84,7 +93,7 @@ export function GachaPage() {
     setIsSpinning(true);
     setShowLoading(true);
 
-    setTimeout(() => {
+    timeoutRef.current = window.setTimeout(() => {
       const amount = spinGacha(OTOSHIDAMA_CONFIG);
       setResult({ playerName: playerName.trim(), amount });
       navigate("/result");
