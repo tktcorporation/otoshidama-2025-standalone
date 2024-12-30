@@ -10,10 +10,19 @@ export function ResultPage() {
   const { result } = useContext(GachaContext);
 
   useEffect(() => {
-    if (!result) {
+    const hasVisited = sessionStorage.getItem("resultPageVisited");
+    if (!hasVisited || !result) {
       navigate("/");
+    } else {
+      sessionStorage.removeItem("resultPageVisited");
     }
   }, [result, navigate]);
+
+  useEffect(() => {
+    if (result) {
+      sessionStorage.setItem("resultPageVisited", "true");
+    }
+  }, [result]);
 
   if (!result) {
     return null;
