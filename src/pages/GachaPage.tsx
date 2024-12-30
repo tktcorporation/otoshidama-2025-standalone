@@ -93,9 +93,7 @@ export function GachaPage() {
 
   return (
     <>
-      <AnimatePresence>
-        {showLoading && <LoadingScreen />}
-      </AnimatePresence>
+      <AnimatePresence>{showLoading && <LoadingScreen />}</AnimatePresence>
 
       <AnimatePresence mode="wait">
         {!showLoading && (
@@ -126,12 +124,17 @@ export function GachaPage() {
                       <h1 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
                         お年玉ガチャ
                       </h1>
-                      <p className="text-gray-600">今年はいくらもらえるかな？</p>
+                      <p className="text-gray-600">
+                        今年はいくらもらえるかな？
+                      </p>
                     </div>
 
                     <div className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="playerName" className="text-sm font-medium">
+                        <Label
+                          htmlFor="playerName"
+                          className="text-sm font-medium"
+                        >
                           お名前
                         </Label>
                         <Input

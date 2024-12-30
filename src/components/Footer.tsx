@@ -4,7 +4,9 @@ import { cn } from "../lib/utils";
 
 export const Footer = ({ className }: { className?: string }) => {
   return (
-    <footer className={cn("w-full flex justify-center items-center", className)}>
+    <footer
+      className={cn("w-full flex justify-center items-center", className)}
+    >
       <div className="flex gap-6">
         <span className="text-sm font-medium text-white/90">連絡先:</span>
         <a
