@@ -72,7 +72,7 @@ export function ResultPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent"
+                className="text-3xl font-bold bg-gradient-to-r from-red-500 to-rose-600 bg-clip-text text-transparent"
               >
                 {result.playerName}さん
                 <br />
@@ -85,7 +85,7 @@ export function ResultPage() {
                 transition={{ delay: 0.6 }}
                 className="relative"
               >
-                <div className="text-5xl font-bold text-red-600 tracking-wider">
+                <div className="text-5xl font-bold text-red-500 tracking-wider">
                   ¥{result.amount.toLocaleString()}
                 </div>
                 <motion.div

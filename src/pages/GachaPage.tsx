@@ -130,7 +130,7 @@ export function GachaPage() {
                     className="relative space-y-6"
                   >
                     <div className="text-center space-y-2">
-                      <h1 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">
+                      <h1 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-rose-600 bg-clip-text text-transparent">
                         お年玉ガチャ
                       </h1>
                       <p className="text-gray-600">
@@ -211,7 +211,7 @@ export function GachaPage() {
                       disabled={isSpinning}
                       className={cn(
                         "w-full h-14 text-lg font-bold tracking-wider",
-                        "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+                        "bg-gradient-to-r from-red-500 to-rose-600 hover:from-red-600 hover:to-rose-700",
                         "shadow-lg hover:shadow-xl transition-all duration-300",
                         "disabled:opacity-50 disabled:cursor-not-allowed",
                       )}
