@@ -230,7 +230,7 @@ export function GachaPage() {
                       <Button
                         variant="ghost"
                         size="sm"
-                        className="text-gray-500 hover:text-gray-700"
+                        className="text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                         onClick={() => setShowProbability(true)}
                       >
                         <Info className="w-4 h-4 mr-1" />
