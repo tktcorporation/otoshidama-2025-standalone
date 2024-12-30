@@ -17,8 +17,10 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
-      <Toaster />
+      <div className="w-screen">
+        <RouterProvider router={router} />
+        <Toaster />
+      </div>
     </>
   );
 }
