@@ -1,20 +1,20 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { GachaPage } from './pages/GachaPage';
-import { ResultPage } from './pages/ResultPage';
-import { Toaster } from './components/ui/toaster';
-import { useState } from 'react';
-import { GachaContext, type GachaResult } from './contexts/gacha';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { GachaPage } from "./pages/GachaPage";
+import { ResultPage } from "./pages/ResultPage";
+import { Toaster } from "./components/ui/toaster";
+import { useState } from "react";
+import { GachaContext, type GachaResult } from "./contexts/gacha";
 
 function App() {
   const [result, setResult] = useState<GachaResult | null>(null);
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <GachaPage />,
     },
     {
-      path: '/result',
+      path: "/result",
       element: <ResultPage />,
     },
   ]);

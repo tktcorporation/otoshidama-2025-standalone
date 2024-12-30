@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext } from "react";
 
 export interface GachaResult {
   playerName: string;
@@ -11,4 +11,4 @@ export const GachaContext = createContext<{
 }>({
   result: null,
   setResult: () => {},
-}); 
+});

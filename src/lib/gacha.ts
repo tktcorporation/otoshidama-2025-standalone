@@ -8,7 +8,7 @@ type GachaConfig = GachaItem[];
 class GachaError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'GachaError';
+    this.name = "GachaError";
   }
 }
 
@@ -18,16 +18,29 @@ class GachaError extends Error {
 function validateConfig(config: GachaConfig): void {
   // 配列が空でないことを確認
   if (config.length === 0) {
-    throw new GachaError('ガチャの設定が空です');
+    throw new GachaError("ガチャの設定が空です");
   }
 
   // 各アイテムの値が有効であることを確認
   config.forEach((item, index) => {
-    if (typeof item.amount !== 'number' || isNaN(item.amount) || item.amount <= 0) {
-      throw new GachaError(`金額が不正です (index: ${index}, amount: ${item.amount})`);
+    if (
+      typeof item.amount !== "number" ||
+      isNaN(item.amount) ||
+      item.amount <= 0
+    ) {
+      throw new GachaError(
+        `金額が不正です (index: ${index}, amount: ${item.amount})`,
+      );
     }
-    if (typeof item.probability !== 'number' || isNaN(item.probability) || item.probability < 0 || item.probability > 1) {
-      throw new GachaError(`確率が不正です (index: ${index}, probability: ${item.probability})`);
+    if (
+      typeof item.probability !== "number" ||
+      isNaN(item.probability) ||
+      item.probability < 0 ||
+      item.probability > 1
+    ) {
+      throw new GachaError(
+        `確率が不正です (index: ${index}, probability: ${item.probability})`,
+      );
     }
   });
 
@@ -39,10 +52,10 @@ function validateConfig(config: GachaConfig): void {
 }
 
 export const OTOSHIDAMA_CONFIG: GachaConfig = [
-  { amount: 1000, probability: 0.20 }, // 1000円
+  { amount: 1000, probability: 0.2 }, // 1000円
   { amount: 2000, probability: 0.29 }, // 2000円
   { amount: 3000, probability: 0.24 }, // 3000円
-  { amount: 4000, probability: 0.10 }, // 4000円
+  { amount: 4000, probability: 0.1 }, // 4000円
   { amount: 5000, probability: 0.07 }, // 5000円
   { amount: 6000, probability: 0.03 }, // 6000円
   { amount: 7000, probability: 0.02 }, // 7000円
@@ -57,18 +70,18 @@ export const OTOSHIDAMA_CONFIG: GachaConfig = [
  */
 export function spinGacha(config: GachaConfig): number {
   validateConfig(config);
-  
+
   const random = Math.random();
   let cumulativeProbability = 0;
-  
+
   for (const item of config) {
     cumulativeProbability += item.probability;
     if (random <= cumulativeProbability) {
       return item.amount;
     }
   }
-  
+
   // 丸め誤差対策として、最小値を返す
-  const minAmount = Math.min(...config.map(item => item.amount));
+  const minAmount = Math.min(...config.map((item) => item.amount));
   return minAmount;
 }

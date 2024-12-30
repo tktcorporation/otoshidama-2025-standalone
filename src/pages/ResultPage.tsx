@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Card } from '../components/ui/card';
-import { Coins } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { GachaContext } from '../contexts/gacha';
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Card } from "../components/ui/card";
+import { Coins } from "lucide-react";
+import { motion } from "framer-motion";
+import { GachaContext } from "../contexts/gacha";
 
 export function ResultPage() {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export function ResultPage() {
 
   useEffect(() => {
     if (!result) {
-      navigate('/');
+      navigate("/");
     }
   }, [result, navigate]);
 
@@ -27,13 +27,13 @@ export function ResultPage() {
         transition={{
           type: "spring",
           stiffness: 260,
-          damping: 20
+          damping: 20,
         }}
         className="w-full max-w-md"
       >
         <Card className="relative overflow-hidden backdrop-blur-lg bg-white/90 p-8 shadow-xl">
           <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-white/10 pointer-events-none" />
-          
+
           <div className="relative space-y-8">
             <motion.div
               initial={{ scale: 0 }}
@@ -46,12 +46,12 @@ export function ResultPage() {
                 <motion.div
                   animate={{
                     scale: [1, 1.2, 1],
-                    opacity: [0.5, 1, 0.5]
+                    opacity: [0.5, 1, 0.5],
                   }}
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                   className="absolute inset-0 bg-yellow-400/30 rounded-full blur-xl"
                 />
@@ -65,7 +65,9 @@ export function ResultPage() {
                 transition={{ delay: 0.4 }}
                 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent"
               >
-                {result.playerName}さん<br />おめでとうございます！
+                {result.playerName}さん
+                <br />
+                おめでとうございます！
               </motion.h1>
 
               <motion.div
@@ -84,7 +86,7 @@ export function ResultPage() {
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                   className="absolute inset-0 bg-red-400/20 blur-2xl rounded-full"
                 />

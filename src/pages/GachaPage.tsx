@@ -1,20 +1,26 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Card } from '../components/ui/card';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Gift, Sparkles, Coins, Info } from 'lucide-react';
-import { cn } from '../lib/utils';
-import { OTOSHIDAMA_CONFIG, spinGacha } from '../lib/gacha';
-import { motion, AnimatePresence } from 'framer-motion';
-import { LoadingScreen } from '../components/LoadingScreen';
-import { GachaContext } from '../contexts/gacha';
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Card } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import { Gift, Sparkles, Coins, Info } from "lucide-react";
+import { cn } from "../lib/utils";
+import { OTOSHIDAMA_CONFIG, spinGacha } from "../lib/gacha";
+import { motion, AnimatePresence } from "framer-motion";
+import { LoadingScreen } from "../components/LoadingScreen";
+import { GachaContext } from "../contexts/gacha";
 
-const amounts = OTOSHIDAMA_CONFIG.map(item => item.amount);
-const probabilities = OTOSHIDAMA_CONFIG.map(item => item.probability);
+const amounts = OTOSHIDAMA_CONFIG.map((item) => item.amount);
+const probabilities = OTOSHIDAMA_CONFIG.map((item) => item.probability);
 
-function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function ProbabilityModal({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) {
   if (!isOpen) return null;
 
   return (
@@ -30,25 +36,28 @@ function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         className="bg-white rounded-lg shadow-xl max-w-md w-full p-6"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <h3 className="text-xl font-bold text-gray-900 mb-4">提供割合</h3>
         <div className="space-y-2">
           {amounts.map((amount, index) => (
-            <div key={amount} className="flex justify-between items-center py-2 border-b border-gray-100">
+            <div
+              key={amount}
+              className="flex justify-between items-center py-2 border-b border-gray-100"
+            >
               <div className="flex items-center gap-2">
-                <span className="text-red-600 font-medium">¥{amount.toLocaleString()}</span>
+                <span className="text-red-600 font-medium">
+                  ¥{amount.toLocaleString()}
+                </span>
               </div>
-              <span className="text-gray-600">{(probabilities[index] * 100).toFixed(1)}%</span>
+              <span className="text-gray-600">
+                {(probabilities[index] * 100).toFixed(1)}%
+              </span>
             </div>
           ))}
         </div>
         <div className="mt-6 text-center">
-          <Button
-            onClick={onClose}
-            variant="outline"
-            className="w-full"
-          >
+          <Button onClick={onClose} variant="outline" className="w-full">
             閉じる
           </Button>
         </div>
@@ -60,25 +69,25 @@ function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
 export function GachaPage() {
   const navigate = useNavigate();
   const [isSpinning, setIsSpinning] = useState(false);
-  const [playerName, setPlayerName] = useState('');
-  const [error, setError] = useState('');
+  const [playerName, setPlayerName] = useState("");
+  const [error, setError] = useState("");
   const [showLoading, setShowLoading] = useState(false);
   const [showProbability, setShowProbability] = useState(false);
   const { setResult } = useContext(GachaContext);
 
   const handleSpin = () => {
     if (!playerName.trim()) {
-      setError('お名前を入力してください');
+      setError("お名前を入力してください");
       return;
     }
-    setError('');
+    setError("");
     setIsSpinning(true);
     setShowLoading(true);
-    
+
     setTimeout(() => {
       const amount = spinGacha(OTOSHIDAMA_CONFIG);
       setResult({ playerName: playerName.trim(), amount });
-      navigate('/result');
+      navigate("/result");
     }, 3000);
   };
 
@@ -86,9 +95,12 @@ export function GachaPage() {
     <>
       <AnimatePresence>
         {showLoading && <LoadingScreen />}
-        <ProbabilityModal isOpen={showProbability} onClose={() => setShowProbability(false)} />
+        <ProbabilityModal
+          isOpen={showProbability}
+          onClose={() => setShowProbability(false)}
+        />
       </AnimatePresence>
-      
+
       <div className="min-h-[100dvh] flex flex-col items-center justify-center bg-gradient-to-br from-red-500 via-red-600 to-red-700 p-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -98,7 +110,7 @@ export function GachaPage() {
         >
           <Card className="relative overflow-hidden backdrop-blur-lg bg-white/90 p-6 shadow-xl">
             <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-white/10 pointer-events-none" />
-            
+
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -128,7 +140,7 @@ export function GachaPage() {
                     {error && (
                       <motion.p
                         initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
+                        animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         className="text-sm text-red-500"
                       >
@@ -147,7 +159,7 @@ export function GachaPage() {
                   transition={{
                     duration: 1,
                     repeat: isSpinning ? Infinity : 0,
-                    ease: "linear"
+                    ease: "linear",
                   }}
                   className="w-48 h-48 rounded-full border-8 border-red-600/30 flex items-center justify-center relative"
                 >
@@ -175,21 +187,25 @@ export function GachaPage() {
                   "w-full h-14 text-lg font-bold tracking-wider",
                   "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
                   "shadow-lg hover:shadow-xl transition-all duration-300",
-                  "disabled:opacity-50 disabled:cursor-not-allowed"
+                  "disabled:opacity-50 disabled:cursor-not-allowed",
                 )}
               >
                 {isSpinning ? (
                   <span className="flex items-center gap-2">
                     <motion.span
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     >
                       <Coins className="w-5 h-5" />
                     </motion.span>
                     ガチャ回転中...
                   </span>
                 ) : (
-                  'ガチャを回す'
+                  "ガチャを回す"
                 )}
               </Button>
 

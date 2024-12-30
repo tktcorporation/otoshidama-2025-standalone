@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Gift, Sparkles } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Gift, Sparkles } from "lucide-react";
 
 export function LoadingScreen() {
   return (
@@ -11,19 +11,20 @@ export function LoadingScreen() {
     >
       <motion.div
         className="absolute inset-0"
-        initial={{ backgroundPosition: '0% 0%' }}
+        initial={{ backgroundPosition: "0% 0%" }}
         animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
+          backgroundPosition: ["0% 0%", "100% 100%"],
         }}
         transition={{
           duration: 20,
           repeat: Infinity,
           repeatType: "reverse",
-          ease: "linear"
+          ease: "linear",
         }}
         style={{
-          background: 'radial-gradient(circle at center, transparent 0%, transparent 100%)',
-          backgroundSize: '100px 100px',
+          background:
+            "radial-gradient(circle at center, transparent 0%, transparent 100%)",
+          backgroundSize: "100px 100px",
           opacity: 0.5,
         }}
       />
@@ -38,7 +39,7 @@ export function LoadingScreen() {
           transition={{
             duration: 2,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         >
           <Gift className="w-24 h-24 text-white drop-shadow-lg" />
@@ -50,7 +51,7 @@ export function LoadingScreen() {
             transition={{
               duration: 8,
               repeat: Infinity,
-              ease: "linear"
+              ease: "linear",
             }}
           >
             {[0, 90, 180, 270].map((angle, index) => (
@@ -68,7 +69,7 @@ export function LoadingScreen() {
                   duration: 2,
                   repeat: Infinity,
                   delay: index * 0.5,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               >
                 <Sparkles className="w-8 h-8 text-yellow-300" />
@@ -89,7 +90,7 @@ export function LoadingScreen() {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="text-2xl font-bold text-white drop-shadow-lg"
           >
