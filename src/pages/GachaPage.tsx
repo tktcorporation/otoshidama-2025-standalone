@@ -4,12 +4,55 @@ import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { Gift, Sparkles, Coins } from 'lucide-react';
+import { Gift, Sparkles, Coins, Info } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { OTOSHIDAMA_CONFIG, spinGacha } from '../lib/gacha';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { GachaContext } from '../App';
+
+function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  if (!isOpen) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        className="bg-white rounded-lg shadow-xl max-w-md w-full p-6"
+        onClick={e => e.stopPropagation()}
+      >
+        <h3 className="text-xl font-bold text-gray-900 mb-4">提供割合</h3>
+        <div className="space-y-2">
+          {OTOSHIDAMA_CONFIG.amounts.map((amount, index) => (
+            <div key={amount} className="flex justify-between items-center py-2 border-b border-gray-100">
+              <div className="flex items-center gap-2">
+                <span className="text-red-600 font-medium">¥{amount.toLocaleString()}</span>
+              </div>
+              <span className="text-gray-600">{(OTOSHIDAMA_CONFIG.probabilities[index] * 100).toFixed(1)}%</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-6 text-center">
+          <Button
+            onClick={onClose}
+            variant="outline"
+            className="w-full"
+          >
+            閉じる
+          </Button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export function GachaPage() {
   const navigate = useNavigate();
@@ -17,6 +60,7 @@ export function GachaPage() {
   const [playerName, setPlayerName] = useState('');
   const [error, setError] = useState('');
   const [showLoading, setShowLoading] = useState(false);
+  const [showProbability, setShowProbability] = useState(false);
   const { setResult } = useContext(GachaContext);
 
   const handleSpin = () => {
@@ -39,6 +83,7 @@ export function GachaPage() {
     <>
       <AnimatePresence>
         {showLoading && <LoadingScreen />}
+        <ProbabilityModal isOpen={showProbability} onClose={() => setShowProbability(false)} />
       </AnimatePresence>
       
       <div className="min-h-[100dvh] flex flex-col items-center justify-center bg-gradient-to-br from-red-500 via-red-600 to-red-700 p-4">
@@ -146,7 +191,15 @@ export function GachaPage() {
               </Button>
 
               <div className="text-center space-y-1 text-sm text-gray-500">
-                <p>当選金額: ¥1,000 ～ ¥10,000</p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowProbability(true)}
+                >
+                  <Info className="w-4 h-4 mr-1" />
+                  提供割合を確認する
+                </Button>
               </div>
             </motion.div>
           </Card>
