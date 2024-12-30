@@ -1,11 +1,11 @@
-export interface GachaItem {
+interface GachaItem {
   amount: number;
   probability: number;
 }
 
-export type GachaConfig = GachaItem[];
+type GachaConfig = GachaItem[];
 
-export class GachaError extends Error {
+class GachaError extends Error {
   constructor(message: string) {
     super(message);
     this.name = 'GachaError';
@@ -50,15 +50,6 @@ export const OTOSHIDAMA_CONFIG: GachaConfig = [
   { amount: 9000, probability: 0.02 }, // 9000円
   { amount: 10000, probability: 0.01 }, // 10000円
 ];
-
-/**
- * 期待値を計算する
- * @throws {GachaError} 設定が不正な場合
- */
-export function calculateExpectedValue(config: GachaConfig): number {
-  validateConfig(config);
-  return config.reduce((sum, item) => sum + item.amount * item.probability, 0);
-}
 
 /**
  * ガチャを実行する
