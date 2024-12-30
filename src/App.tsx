@@ -9,16 +9,21 @@ import { Footer } from "./components/Footer";
 function App() {
   const [result, setResult] = useState<GachaResult | null>(null);
 
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        element: <GachaPage />,
+      },
+      {
+        path: "/result",
+        element: <ResultPage />,
+      },
+    ],
     {
-      path: "/",
-      element: <GachaPage />,
-    },
-    {
-      path: "/result",
-      element: <ResultPage />,
-    },
-  ]);
+      basename: import.meta.env.BASE_URL,
+    }
+  );
 
   return (
     <GachaContext.Provider value={{ result, setResult }}>

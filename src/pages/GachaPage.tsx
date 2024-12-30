@@ -178,8 +178,8 @@ export function GachaPage() {
                         <div className="absolute bottom-4 left-2 -rotate-12">
                           <Coins className="w-10 h-10 text-yellow-500" />
                         </div>
-                        <Gift 
-                          className="w-32 h-32 text-red-500 drop-shadow-lg relative" 
+                        <Gift
+                          className="w-32 h-32 text-red-500 drop-shadow-lg relative"
                           strokeWidth={1.5}
                         />
                       </motion.div>
