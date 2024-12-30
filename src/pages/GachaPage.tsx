@@ -228,9 +228,9 @@ export function GachaPage() {
 
                     <div className="text-center space-y-1 text-sm text-gray-500">
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
-                        className="text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                        className="bg-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-100 border-0"
                         onClick={() => setShowProbability(true)}
                       >
                         <Info className="w-4 h-4 mr-1" />
