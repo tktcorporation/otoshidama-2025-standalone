@@ -1,11 +1,23 @@
-import { useParams } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { GachaContext } from '@/App';
 
 export function ResultPage() {
-  const { amount } = useParams();
-  const amountNumber = parseInt(amount || '0', 10);
+  const navigate = useNavigate();
+  const { result } = useContext(GachaContext);
+
+  useEffect(() => {
+    if (!result) {
+      navigate('/');
+    }
+  }, [result, navigate]);
+
+  if (!result) {
+    return null;
+  }
 
   return (
     <div className="min-h-[100dvh] flex flex-col items-center justify-center bg-gradient-to-br from-red-500 via-red-600 to-red-700 p-4">
@@ -53,7 +65,7 @@ export function ResultPage() {
                 transition={{ delay: 0.4 }}
                 className="text-3xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent"
               >
-                おめでとうございます！
+                {result.playerName}さん<br />おめでとうございます！
               </motion.h1>
 
               <motion.div
@@ -63,7 +75,7 @@ export function ResultPage() {
                 className="relative"
               >
                 <div className="text-5xl font-bold text-red-600 tracking-wider">
-                  ¥{amountNumber.toLocaleString()}
+                  ¥{result.amount.toLocaleString()}
                 </div>
                 <motion.div
                   animate={{
