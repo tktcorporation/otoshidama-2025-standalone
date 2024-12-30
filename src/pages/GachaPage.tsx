@@ -160,7 +160,7 @@ export function GachaPage() {
                       </div>
                     </div>
 
-                    <div className="relative aspect-square flex items-center justify-center p-4">
+                    <div className="relative flex items-center justify-center">
                       <motion.div
                         animate={{
                           rotate: isSpinning ? 360 : 0,
