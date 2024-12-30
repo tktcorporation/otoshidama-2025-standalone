@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "npm run eslint && npm run typecheck",
+    "format": "prettier --write .",
+    "eslint": "eslint .",
+    "typecheck": "tsc --build --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {

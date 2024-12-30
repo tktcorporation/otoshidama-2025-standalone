@@ -2,20 +2,8 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { GachaPage } from './pages/GachaPage';
 import { ResultPage } from './pages/ResultPage';
 import { Toaster } from './components/ui/toaster';
-import { createContext, useState } from 'react';
-
-export interface GachaResult {
-  playerName: string;
-  amount: number;
-}
-
-export const GachaContext = createContext<{
-  result: GachaResult | null;
-  setResult: (result: GachaResult | null) => void;
-}>({
-  result: null,
-  setResult: () => {},
-});
+import { useState } from 'react';
+import { GachaContext, type GachaResult } from './contexts/gacha';
 
 function App() {
   const [result, setResult] = useState<GachaResult | null>(null);

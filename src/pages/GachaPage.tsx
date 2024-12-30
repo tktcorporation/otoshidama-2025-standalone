@@ -9,7 +9,10 @@ import { cn } from '../lib/utils';
 import { OTOSHIDAMA_CONFIG, spinGacha } from '../lib/gacha';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LoadingScreen } from '../components/LoadingScreen';
-import { GachaContext } from '../App';
+import { GachaContext } from '../contexts/gacha';
+
+const amounts = OTOSHIDAMA_CONFIG.map(item => item.amount);
+const probabilities = OTOSHIDAMA_CONFIG.map(item => item.probability);
 
 function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   if (!isOpen) return null;
@@ -31,12 +34,12 @@ function ProbabilityModal({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
       >
         <h3 className="text-xl font-bold text-gray-900 mb-4">提供割合</h3>
         <div className="space-y-2">
-          {OTOSHIDAMA_CONFIG.amounts.map((amount, index) => (
+          {amounts.map((amount, index) => (
             <div key={amount} className="flex justify-between items-center py-2 border-b border-gray-100">
               <div className="flex items-center gap-2">
                 <span className="text-red-600 font-medium">¥{amount.toLocaleString()}</span>
               </div>
-              <span className="text-gray-600">{(OTOSHIDAMA_CONFIG.probabilities[index] * 100).toFixed(1)}%</span>
+              <span className="text-gray-600">{(probabilities[index] * 100).toFixed(1)}%</span>
             </div>
           ))}
         </div>
