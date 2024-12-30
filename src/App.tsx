@@ -1,43 +1,21 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GachaPage } from "./pages/GachaPage";
 import { ResultPage } from "./pages/ResultPage";
 import { Toaster } from "./components/ui/toaster";
-import { useState } from "react";
-import { GachaContext, type GachaResult } from "./contexts/gacha";
-import { Footer } from "./components/Footer";
+import { GachaProvider } from "./contexts/gacha";
 
-function App() {
-  const [result, setResult] = useState<GachaResult | null>(null);
-
-  const router = createBrowserRouter(
-    [
-      {
-        path: "/",
-        element: <GachaPage />,
-      },
-      {
-        path: "/result",
-        element: <ResultPage />,
-      },
-    ],
-    {
-      basename: import.meta.env.BASE_URL,
-    },
-  );
-
+export function App() {
   return (
-    <GachaContext.Provider value={{ result, setResult }}>
-      <div className="h-[100svh] w-screen flex flex-col overflow-hidden bg-red-600 ">
-        <div className="flex-1 flex items-center justify-center overflow-auto">
-          <div className="w-full max-w-md mx-auto">
-            <RouterProvider router={router} />
-          </div>
+    <GachaProvider>
+      <Router>
+        <div className="min-h-screen bg-gradient-to-br from-red-50 to-white">
+          <Routes>
+            <Route path="/" element={<GachaPage />} />
+            <Route path="/result" element={<ResultPage />} />
+          </Routes>
+          <Toaster />
         </div>
-        <Footer className="h-[2rem]" />
-        <Toaster />
-      </div>
-    </GachaContext.Provider>
+      </Router>
+    </GachaProvider>
   );
 }
-
-export default App;
