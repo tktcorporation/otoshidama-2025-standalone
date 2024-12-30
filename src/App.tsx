@@ -27,7 +27,7 @@ function App() {
 
   return (
     <GachaContext.Provider value={{ result, setResult }}>
-      <div className="h-[100svh] w-screen flex flex-col overflow-hidden bg-gradient-to-br from-red-500 via-red-600 to-red-700">
+      <div className="h-[100svh] w-screen flex flex-col overflow-hidden bg-red-600 ">
         <div className="flex-1 flex items-center justify-center overflow-auto">
           <div className="w-full max-w-md mx-auto">
             <RouterProvider router={router} />
