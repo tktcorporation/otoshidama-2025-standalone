@@ -73,6 +73,7 @@ export function GachaPage() {
   const [error, setError] = useState("");
   const [showProbability, setShowProbability] = useState(false);
   const [isHighValue, setIsHighValue] = useState(false);
+  const [resultAmount, setResultAmount] = useState(0);
   const { setResult, isLoading, setIsLoading } = useGacha();
   const timeoutRef = useRef<number>();
 
@@ -96,16 +97,19 @@ export function GachaPage() {
     const result = spinGacha(OTOSHIDAMA_CONFIG);
     setResult({ playerName: playerName.trim(), amount: result.amount });
     setIsHighValue(result.isHighValue);
+    setResultAmount(result.amount);
 
     timeoutRef.current = window.setTimeout(() => {
       setIsLoading(false);
       navigate("/result");
-    }, 3000);
+    }, 4000);
   };
 
   return (
     <>
-      <AnimatePresence>{isLoading && <LoadingScreen isHighValue={isHighValue} />}</AnimatePresence>
+      <AnimatePresence>
+        {isLoading && <LoadingScreen isHighValue={isHighValue} resultAmount={resultAmount} />}
+      </AnimatePresence>
 
       <AnimatePresence mode="wait">
         {!isLoading && (
