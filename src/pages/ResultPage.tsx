@@ -98,7 +98,7 @@ export function ResultPage() {
                 transition={{ delay: 0.8 }}
                 className="text-gray-600"
               >
-                今年も良い年になりますように！
+                今年も良い１年になりますように！
               </motion.p>
             </div>
           </div>

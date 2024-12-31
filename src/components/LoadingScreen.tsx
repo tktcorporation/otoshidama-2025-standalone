@@ -97,7 +97,7 @@ export function LoadingScreen() {
           >
             お年玉を準備中...
           </motion.h2>
-          <p className="text-white/80">素敵な金額が当たりますように！</p>
+          <p className="text-white/80">✨たくさんもらえたらいいな✨</p>
         </motion.div>
       </div>
     </motion.div>
