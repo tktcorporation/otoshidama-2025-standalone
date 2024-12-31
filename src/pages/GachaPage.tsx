@@ -129,7 +129,7 @@ export function GachaPage() {
                     <Card className="relative overflow-hidden backdrop-blur-lg bg-white/90 p-8 shadow-xl">
                       <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-white/10 pointer-events-none" />
 
-                      <div className="relative space-y-8">
+                      <div className="relative space-y-7">
                         <div className="text-center space-y-2">
                           <h1 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-rose-600 bg-clip-text text-transparent">
                             お年玉ガチャ
@@ -153,7 +153,7 @@ export function GachaPage() {
                               onChange={(e) => setPlayerName(e.target.value)}
                               placeholder="お名前を入力してください"
                               disabled={isSpinning}
-                              className="h-12 px-4 border-2 focus:ring-red-500"
+                              className="h-12 px-4 border-2 border-gray-200 focus-visible:border-red-500 focus-visible:ring-0 transition-colors"
                             />
                             <AnimatePresence>
                               {error && (
