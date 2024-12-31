@@ -1,9 +1,15 @@
 interface GachaItem {
   amount: number;
   probability: number;
+  isHighValue?: boolean;
 }
 
 type GachaConfig = GachaItem[];
+
+interface SpinResult {
+  amount: number;
+  isHighValue: boolean;
+}
 
 class GachaError extends Error {
   constructor(message: string) {
@@ -57,18 +63,18 @@ export const OTOSHIDAMA_CONFIG: GachaConfig = [
   { amount: 3000, probability: 0.24 }, // 3000円
   { amount: 4000, probability: 0.1 }, // 4000円
   { amount: 5000, probability: 0.07 }, // 5000円
-  { amount: 6000, probability: 0.03 }, // 6000円
-  { amount: 7000, probability: 0.02 }, // 7000円
-  { amount: 8000, probability: 0.02 }, // 8000円
-  { amount: 9000, probability: 0.02 }, // 9000円
-  { amount: 10000, probability: 0.01 }, // 10000円
+  { amount: 6000, probability: 0.03, isHighValue: true }, // 6000円
+  { amount: 7000, probability: 0.02, isHighValue: true }, // 7000円
+  { amount: 8000, probability: 0.02, isHighValue: true }, // 8000円
+  { amount: 9000, probability: 0.02, isHighValue: true }, // 9000円
+  { amount: 10000, probability: 0.01, isHighValue: true }, // 10000円
 ];
 
 /**
  * ガチャを実行する
  * @throws {GachaError} 設定が不正な場合
  */
-export function spinGacha(config: GachaConfig): number {
+export function spinGacha(config: GachaConfig): SpinResult {
   validateConfig(config);
 
   const random = Math.random();
@@ -77,11 +83,19 @@ export function spinGacha(config: GachaConfig): number {
   for (const item of config) {
     cumulativeProbability += item.probability;
     if (random <= cumulativeProbability) {
-      return item.amount;
+      return {
+        amount: item.amount,
+        isHighValue: !!item.isHighValue,
+      };
     }
   }
 
   // 丸め誤差対策として、最小値を返す
-  const minAmount = Math.min(...config.map((item) => item.amount));
-  return minAmount;
+  const minItem = config.reduce((min, item) => 
+    item.amount < min.amount ? item : min
+  );
+  return {
+    amount: minItem.amount,
+    isHighValue: !!minItem.isHighValue,
+  };
 }

@@ -1,15 +1,41 @@
 import { motion } from "framer-motion";
 import { Gift, Sparkles } from "lucide-react";
 
-export function LoadingScreen() {
+type LoadingScreenProps = {
+  isHighValue?: boolean;
+};
+
+export function LoadingScreen({ isHighValue = false }: LoadingScreenProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden bg-red-600"
+      className={`fixed inset-0 flex items-center justify-center z-50 overflow-hidden ${
+        isHighValue ? "bg-gradient-to-br from-red-600 to-yellow-500" : "bg-red-600"
+      }`}
     >
-      <div className="absolute inset-0 bg-black/80" />
+      <div className={`absolute inset-0 ${isHighValue ? "bg-black/60" : "bg-black/80"}`} />
+      
+      {/* 高額当選時の追加エフェクト */}
+      {isHighValue && (
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "loop",
+          }}
+        >
+          <div className="w-full h-full bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-300 opacity-30" />
+        </motion.div>
+      )}
+
       <motion.div
         className="absolute inset-0"
         initial={{ backgroundPosition: "0% 0%" }}
@@ -43,7 +69,7 @@ export function LoadingScreen() {
             ease: "easeInOut",
           }}
         >
-          <Gift className="w-24 h-24 text-white drop-shadow-lg" />
+          <Gift className={`w-24 h-24 ${isHighValue ? "text-yellow-300" : "text-white"} drop-shadow-lg`} />
           <motion.div
             className="absolute inset-0"
             animate={{
@@ -55,7 +81,7 @@ export function LoadingScreen() {
               ease: "linear",
             }}
           >
-            {[0, 90, 180, 270].map((angle, index) => (
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, index) => (
               <motion.div
                 key={angle}
                 className="absolute"
@@ -73,7 +99,7 @@ export function LoadingScreen() {
                   ease: "easeInOut",
                 }}
               >
-                <Sparkles className="w-8 h-8 text-yellow-300" />
+                <Sparkles className={`w-8 h-8 ${isHighValue ? "text-yellow-400" : "text-yellow-300"}`} />
               </motion.div>
             ))}
           </motion.div>
@@ -93,11 +119,15 @@ export function LoadingScreen() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="text-2xl font-bold text-white drop-shadow-lg"
+            className={`text-2xl font-bold ${
+              isHighValue ? "text-yellow-300" : "text-white"
+            } drop-shadow-lg`}
           >
             お年玉を準備中...
           </motion.h2>
-          <p className="text-white/80">✨たくさんもらえたらいいな✨</p>
+          <p className={`${isHighValue ? "text-yellow-100" : "text-white/80"}`}>
+            {isHighValue ? "✨特別なお年玉が待っています✨" : "✨たくさんもらえたらいいな✨"}
+          </p>
         </motion.div>
       </div>
     </motion.div>
